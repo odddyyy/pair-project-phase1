@@ -1,0 +1,28 @@
+{
+  "name": "Pair-Project-P1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://2maleek@github.com/2maleek/Pair-Project-P1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2maleek/Pair-Project-P1/issues"
+  },
+  "homepage": "https://github.com/2maleek/Pair-Project-P1#readme",
+  "dependencies": {
+    "bcrypt": "^4.0.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "pg": "^7.18.2",
+    "sequelize": "^5.21.5"
+  }
+}

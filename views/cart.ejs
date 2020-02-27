@@ -1,0 +1,41 @@
+<%- include('partials/header', { title: 'Home'}) %>
+<%- include('partials/navbar', { page: 'Home', session}) %>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Subtotal</th>
+                  </tr>
+                </thead>
+                <% let totalHarga = 0 %>
+                <tbody>
+                 <% data.Food.forEach(item => { %>
+                  <tr>
+                    <td><%= item.name %></td>
+                    <td><%= item.Transaction.quantity %></td>
+                    <td><%= convert(item.price) %></td>
+                    <td><%= convert(calculate(item.Transaction.quantity,item.price)) %></td>
+                  </tr>
+                    <% totalHarga += calculate(item.Transaction.quantity,item.price) %>
+                  <% }) %>
+
+                 <tr>
+                     <td colspan="3">Total Harga :  </td>
+                     <td><%= convert(totalHarga) %></td>
+                 </tr>
+                </tbody>
+            
+              </table>
+              <a href="/foods/checkout">
+                <button type="button" class="btn btn-block btn-success" onclick="confirm('Are you sure ? ')">Checkout</button>
+              </a> 
+        </div>
+    </div>
+</div>
+<%- include('partials/footer') %>

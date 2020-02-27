@@ -1,0 +1,34 @@
+<%- include('partials/header', { title: 'Home'}) %>
+<%- include('partials/navbar', { page: 'Home'}) %>
+
+<%= JSON.stringify( food ) %>
+
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Price</th>
+        <th scope="col">Type</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+     <% food.forEach(item => { %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= item.stock %><% if(item.stock <= 10) { %>
+          <small id="emailHelp" class="form-text  text-danger">* Almost out of stock</small>
+        <% }%></td>
+        <td><%= item.price %></td>
+        <td><%= item.group %></td>
+        <td>
+         
+      </tr>
+     <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('partials/footer') %>

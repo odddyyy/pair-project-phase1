@@ -1,0 +1,51 @@
+<%- include('partials/header', { title: 'Home'}) %>
+<%- include('partials/navbar', { page: 'Home', session}) %>
+<style>
+.card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
+
+
+body { 
+  background-image: url('https://static3.bigstockphoto.com/9/1/2/large1500/219336775.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+</style>
+
+<% food.sort((a,b)=> a.id-b.id) %>
+<div class="container mt-5">
+  <form action="/foods/order/<%= session.id %>" method="POST">
+  <% food.forEach(item => { %>
+    <div class="row mt-5">
+      <div class="col">
+        <div class="card" style="width: 50%;">
+         <img src="https://www.seriouseats.com/2019/06/20190604-nasi-goreng-fried-rice-vicky-wasik-7-1500x1125.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><%= item.name %></h5>
+              <p class="card-text">Get delicious <%= item.name %> Now!</p>
+              <h4 class="">Stok : <%= item.stock %></h4>
+              <strong
+              ><% if(item.stock <= 5) { %>
+                <small id="emailHelp" class="form-text  text-danger">* Almost out of stock</small>
+              <% }%>
+              </strong>
+              <strong>Type: <%= item.group %></strong>
+              <div class="mt-3 mr-5 text-center container">
+                <h5>Quantity: </h5>
+                <input type="number" min="0" max="<%= item.stock %>" value="0" name="quantity">
+                <input type="hidden" name="id" value="<%= item.id %>">
+              </div>
+           </div>
+         </div>
+      </div>    
+    </div>
+  <% }) %>
+  <button type="submit" class="btn btn-block btn-success" onclick="confirm('Are you sure ? ')">Confirm Order</button>
+</form>
+
+</div>
+<%- include('partials/footer') %>
